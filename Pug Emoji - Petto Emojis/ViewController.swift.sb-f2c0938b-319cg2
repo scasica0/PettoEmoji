@@ -1,0 +1,58 @@
+//
+//  ViewController.swift
+//  Pug Emoji - Petto Emojis
+//
+//  Created by steve on 8/8/17.
+//
+//
+
+import UIKit
+
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    
+    //reuse identifier for cells
+    private let reuseIdentifier = "emojiCell"
+    
+    //let emojiData = DataSource()
+    var emojiData = ["topping03", "topping04"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    
+    //MARK: Collection View 
+    
+    //Set the number of cells to make
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return emojiData.count
+    }
+    
+    //Create a cell for each cell index path
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! emojiCollectionViewCell
+        
+        // attach the image from assets to cell
+        cell.emojiImage.image = UIImage(named: self.emojiData[indexPath.item])
+        return cell
+    }
+    
+}
